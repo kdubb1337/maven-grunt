@@ -7,6 +7,7 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @ComponentScan
@@ -20,6 +21,17 @@ public class Application extends SpringBootServletInitializer {
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(Application.class);
+	}
+	
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
+		registry.addResourceHandler("/images/**").addResourceLocations("/images/");
+		registry.addResourceHandler("/scripts/**").addResourceLocations("/scripts/");
+		registry.addResourceHandler("/styles/**").addResourceLocations("/styles/");
+		registry.addResourceHandler("/views/**").addResourceLocations("/views/");
+		
+		// TODO should remove this when Grunt is fixed to minify vendor files
+		registry.addResourceHandler("/bower_components/**").addResourceLocations("/bower_components/");
 	}
 	
 	@Bean

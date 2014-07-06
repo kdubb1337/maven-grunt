@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HelloController {
-    @RequestMapping(value="/", method=RequestMethod.GET)
+    @RequestMapping(value="/hello", method=RequestMethod.GET)
     public String index(Model model) {
    	 // let�s pass some variables to the view script
    	 model.addAttribute("wisdom", "Goodbye XML");
